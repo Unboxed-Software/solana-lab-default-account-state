@@ -17,44 +17,5 @@ export async function createToken22MintWithDefaultState(
   decimals: number = 2,
   defaultState: AccountState,
 ): Promise<string> {
-
-  const mintLen = getMintLen([ExtensionType.DefaultAccountState]);
-  // Minimum lamports required for Mint Account
-  const lamports = await connection.getMinimumBalanceForRentExemption(mintLen);
-
-  const createAccountInstruction = SystemProgram.createAccount({
-    fromPubkey: payer.publicKey,
-    newAccountPubkey: mintKeypair.publicKey,
-    space: mintLen,
-    lamports,
-    programId: TOKEN_2022_PROGRAM_ID,
-  });
-
-  // Instruction to initialize the DefaultAccountState Extension
-  const initializeDefaultAccountStateInstruction =
-    createInitializeDefaultAccountStateInstruction(
-      mintKeypair.publicKey,
-      defaultState,
-      TOKEN_2022_PROGRAM_ID,
-    );
-
-  const initializeMintInstruction = createInitializeMintInstruction(
-    mintKeypair.publicKey,
-    decimals,
-    payer.publicKey, // Designated Mint Authority
-    payer.publicKey, //  Designated Freeze Authority
-    TOKEN_2022_PROGRAM_ID,
-  );
-
-  const transaction = new Transaction().add(
-    createAccountInstruction,
-    initializeDefaultAccountStateInstruction,
-    initializeMintInstruction,
-  );
-
-  return await sendAndConfirmTransaction(
-    connection,
-    transaction,
-    [payer, mintKeypair],
-  );
+  // Code goes here
 }
