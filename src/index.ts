@@ -48,14 +48,14 @@ async function testThawAndMint(inputs: ThawAndMintInputs) {
   try {
     // Unfreeze frozen token
     await thawAccount(
-      connection, // connection
-      payer, // who pays for the txn
-      tokenAccount, // Account to thaw
-      mint, // mint for the account
-      payer.publicKey, // Mint freeze authority
-      undefined, // multi signers 
-      undefined, // confirm options
-      TOKEN_2022_PROGRAM_ID // program ID
+      connection,
+      payer,
+      tokenAccount,
+      mint,
+      payer.publicKey,
+      undefined,
+      undefined,
+      TOKEN_2022_PROGRAM_ID
     );
 
     await mintTo(
@@ -105,8 +105,7 @@ async function testTransferWithoutThawing(inputs: ThawAndTransferInputs) {
       TOKEN_2022_PROGRAM_ID
     )
 
-
-    console.error("Should not have minted...");
+    console.error("Should not have transferred...");
   } catch (error) {
     console.log(
       "✅ - We expected this to fail because the account is still frozen."
@@ -120,14 +119,14 @@ async function testTransferWithThawing(inputs: ThawAndTransferInputs) {
 
     // Unfreeze frozen token
     await thawAccount(
-      connection, // connection
-      payer, // who pays for the txn
-      toTokenAccount, // Account to thaw
-      mint, // mint for the account
-      payer.publicKey, // Mint freeze authority
-      undefined, // multi signers 
-      undefined, // confirm options
-      TOKEN_2022_PROGRAM_ID // program ID
+      connection,
+      payer,
+      toTokenAccount,
+      mint,
+      payer.publicKey,
+      undefined,
+      undefined,
+      TOKEN_2022_PROGRAM_ID
     );
 
     await transfer(
@@ -145,7 +144,7 @@ async function testTransferWithThawing(inputs: ThawAndTransferInputs) {
     const account = await getAccount(connection, toTokenAccount, undefined, TOKEN_2022_PROGRAM_ID);
 
     console.log(
-      `✅ - The new account balance is ${Number(account.amount)} after thawing and minting.`
+      `✅ - The new account balance is ${Number(account.amount)} after thawing and transferring.`
     );
 
   } catch (error) {

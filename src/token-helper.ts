@@ -1,4 +1,4 @@
-import { ExtensionType, TOKEN_2022_PROGRAM_ID, createEnableCpiGuardInstruction, createEnableRequiredMemoTransfersInstruction, createInitializeAccountInstruction, createInitializeImmutableOwnerInstruction, getAccountLen } from "@solana/spl-token";
+import { TOKEN_2022_PROGRAM_ID, createInitializeAccountInstruction, getAccountLen } from "@solana/spl-token";
 import { Connection, Keypair, PublicKey, SystemProgram, Transaction, sendAndConfirmTransaction } from "@solana/web3.js";
 
 export async function createTokenAccount(
