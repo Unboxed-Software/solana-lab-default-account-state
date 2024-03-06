@@ -1,8 +1,7 @@
-import { AccountState, TOKEN_2022_PROGRAM_ID, getAccount, mintTo, thawAccount, transfer } from "@solana/spl-token";
+import { AccountState, TOKEN_2022_PROGRAM_ID, getAccount, mintTo, thawAccount, transfer, createAccount } from "@solana/spl-token";
 import { Connection, Keypair, PublicKey } from "@solana/web3.js";
 import { initializeKeypair } from "./keypair-helpers";
-import { createToken22MintWithDefaultState } from "./mint-helper";
-import { createTokenAccount } from "./token-helper";
+import { createTokenExtensionMintWithDefaultState } from "./mint-helper";
 
 (async () => {
   const connection = new Connection("http://127.0.0.1:8899", "confirmed");
