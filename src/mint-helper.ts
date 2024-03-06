@@ -17,5 +17,6 @@ export async function createTokenExtensionMintWithDefaultState(
   decimals: number = 2,
   defaultState: AccountState,
 ): Promise<string> {
+  throw new Error('TODO: implement createTokenExtensionMintWithDefaultState');
   // Code goes here
 }
