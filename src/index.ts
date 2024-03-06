@@ -1,8 +1,7 @@
-import { AccountState, TOKEN_2022_PROGRAM_ID, getAccount, mintTo, thawAccount, transfer } from "@solana/spl-token";
+import { AccountState, TOKEN_2022_PROGRAM_ID, getAccount, mintTo, thawAccount, transfer, createAccount } from "@solana/spl-token";
 import { Connection, Keypair, PublicKey } from "@solana/web3.js";
 import { initializeKeypair } from "./keypair-helpers";
-import { createToken22MintWithDefaultState } from "./mint-helper";
-import { createTokenAccount } from "./token-helper";
+import { createTokenExtensionMintWithDefaultState } from "./mint-helper";
 
 interface MintWithoutThawingInputs {
   connection: Connection;
@@ -171,22 +170,26 @@ async function testTransferWithThawing(inputs: ThawAndTransferInputs) {
   const amountToTransfer = 50;
 
   // ------------ Setup Mint and Token Accounts ------------------
-  await createToken22MintWithDefaultState(connection, payer, mintKeypair, decimals, defaultState)
+  await createTokenExtensionMintWithDefaultState(connection, payer, mintKeypair, decimals, defaultState)
 
-  await createTokenAccount(
+  await createAccount(
     connection,
+    payer,
     mint,
-    payer,
-    payer,
-    ourTokenAccountKeypair
+    payer.publicKey,
+    ourTokenAccountKeypair,
+    undefined,
+    TOKEN_2022_PROGRAM_ID,
   );
 
-  await createTokenAccount(
+  await createAccount(
     connection,
+    payer,
     mint,
-    payer,
-    payer,
-    otherTokenAccountKeypair
+    payer.publicKey,
+    otherTokenAccountKeypair,
+    undefined,
+    TOKEN_2022_PROGRAM_ID,
   );
 
   // ------------ Tests ------------------

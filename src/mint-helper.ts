@@ -10,7 +10,7 @@ import { Connection, Keypair, SystemProgram, Transaction, sendAndConfirmTransact
  * @param defaultState
  * @returns signature of the transaction
  */
-export async function createToken22MintWithDefaultState(
+export async function createTokenExtensionMintWithDefaultState(
   connection: Connection,
   payer: Keypair,
   mintKeypair: Keypair,
