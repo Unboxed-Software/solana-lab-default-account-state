@@ -18,4 +18,16 @@ const otherTokenAccount = otherTokenAccountKeypair.publicKey;
 
 const amountToMint = 1000;
 const amountToTransfer = 50;
-// rest of the code
+
+// CREATE MINT WITH DEFAULT STATE
+
+// CREATE TEST TOKEN ACCOUNTS
+
+// TEST: MINT WITHOUT THAWING
+
+// TEST: MINT WITH THAWING
+
+// TEST: TRANSFER WITHOUT THAWING
+
+// TEST: TRANSFER WITH THAWING
+
