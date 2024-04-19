@@ -13,7 +13,7 @@ const defaultState = AccountState.Frozen;
 
 const ourTokenAccount = ourTokenAccountKeypair.publicKey;
 
-// To satisfy the tranferring tests
+// To satisfy the transferring tests
 const otherTokenAccount = otherTokenAccountKeypair.publicKey;
 
 const amountToMint = 1000;
